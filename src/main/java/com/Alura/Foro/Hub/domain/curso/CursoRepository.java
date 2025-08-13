@@ -1,4 +1,4 @@
-package com.Alura.Foro.Hub.curso;
+package com.Alura.Foro.Hub.domain.curso;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

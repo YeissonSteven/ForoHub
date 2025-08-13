@@ -1,10 +1,12 @@
 package com.Alura.Foro.Hub.domain.topico;
 
-import com.Alura.Foro.Hub.curso.Curso;
+import com.Alura.Foro.Hub.domain.ValidacionTopico;
+import com.Alura.Foro.Hub.domain.curso.Curso;
 import com.Alura.Foro.Hub.domain.respuesta.Respuesta;
 import com.Alura.Foro.Hub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -27,7 +29,7 @@ public class Topico {
     @Column(name="fechaDeCreacion")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime fechaDeCreacion;
-    private boolean status = true;
+    private Boolean status = true;
     @ManyToOne
     private Usuario autor;
     @ManyToOne
@@ -41,5 +43,18 @@ public class Topico {
         this.fechaDeCreacion = fechaDeCreacion;
         this.autor = autor;
         this.curso = curso;
+    }
+
+    public void ActualizarTopico(DatosActualizarTopico datos){
+        if (datos.titulo() != null && datos.titulo() != "") {
+            this.titulo = datos.titulo();
+        }
+        if (datos.mensaje() != null && datos.mensaje() != "") {
+            this.mensaje = datos.mensaje();
+        }
+        if (datos.nombreCurso() != null && datos.nombreCurso() != "") {
+            TopicoService  topicoService = new TopicoService();
+            this.curso = topicoService.BuscarCrusoPornombre(datos.nombreCurso());
+        }
     }
 }

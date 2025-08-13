@@ -1,7 +1,7 @@
 package com.Alura.Foro.Hub.domain.topico;
 
-import com.Alura.Foro.Hub.curso.Curso;
-import com.Alura.Foro.Hub.curso.CursoRepository;
+import com.Alura.Foro.Hub.domain.curso.Curso;
+import com.Alura.Foro.Hub.domain.curso.CursoRepository;
 import com.Alura.Foro.Hub.domain.topico.validaciones.ValidadorDeTopicos;
 import com.Alura.Foro.Hub.domain.usuario.Usuario;
 import com.Alura.Foro.Hub.domain.usuario.UsuarioRepository;
@@ -41,6 +41,11 @@ public class TopicoService {
 
         return topicoRepository.save(topico);
     }
+
+    public Curso BuscarCrusoPornombre(String nombre){
+        return cursoRepository.findByNombre(nombre);
+    }
+
 
 
 }
